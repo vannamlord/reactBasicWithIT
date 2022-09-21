@@ -1,29 +1,18 @@
 import React from "react";
 import ChildComponent from "./ChildComponent";
-
+import AddComponents from "./AddComponent";
 class MyComponent extends React.Component {
     state = {
-        firstName: '',
-        lastName: '',
         arrjobs: [
             { id: 'job1', title: 'devops', salary: '500' },
             { id: 'job2', title: 'BA', salary: '600' },
             { id: 'job3', title: 'Fullstack', salary: '800' }
         ]
     }
-    handleChangeFirstName = (event) => {
+    addNewJob = (job) => {
         this.setState({
-            firstName: event.target.value
+            arrjobs: [...this.state.arrjobs, job]
         })
-    }
-    handleChangeLastName = (event) => {
-        this.setState({
-            lastName: event.target.value
-        })
-    }
-    handleSubmit = (event) => {
-        event.preventDefault();
-        console.log('read stage', this.state)
     }
     /*
         JSX: => return block 
@@ -50,31 +39,10 @@ class MyComponent extends React.Component {
     render() {
         return (
             <>
-                <div>
-                    Hello my component
-                </div>
-                <form action="/action_page.php">
-                    <label htmlFor="fname">First name:</label><br />
-                    <input type="text"
-                        value={this.state.firstName}
-                        onChange={(event) => this.handleChangeFirstName(event)}
-                    /><br />
-                    <label htmlFor="lname">Last name:</label><br />
-                    <input type="text"
-                        value={this.state.lastName}
-                        onChange={(event) => this.handleChangeLastName(event)}
-                    /><br /><br />
-                    <input type="button" value="Submit"
-                        onClick={(event) => this.handleSubmit(event)}
-                    />
-
-                </form>
-                <ChildComponent
-                    name={'Nam'}
-                    age={'15'}
-                    address={'Ha noi'}
-                    arrjobs={this.state.arrjobs}
+                <AddComponents
+                    addNewJob={this.addNewJob}
                 />
+                <ChildComponent arrjobs={this.state.arrjobs} />
             </>
         )
     }
