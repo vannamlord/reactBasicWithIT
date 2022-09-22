@@ -14,6 +14,11 @@ class MyComponent extends React.Component {
             arrjobs: [...this.state.arrjobs, job]
         })
     }
+    deleteAJob = (job) => {
+        this.setState({
+            arrjobs: this.state.arrjobs.filter(item => item.id !== job.id)
+        })
+    }
     /*
         JSX: => return block 
              => Enable use javascript in html file
@@ -42,7 +47,10 @@ class MyComponent extends React.Component {
                 <AddComponents
                     addNewJob={this.addNewJob}
                 />
-                <ChildComponent arrjobs={this.state.arrjobs} />
+                <ChildComponent
+                    arrjobs={this.state.arrjobs}
+                    deleteAJob={this.deleteAJob}
+                />
             </>
         )
     }
