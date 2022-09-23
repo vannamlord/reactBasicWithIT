@@ -19,6 +19,9 @@ class MyComponent extends React.Component {
             arrjobs: this.state.arrjobs.filter(item => item.id !== job.id)
         })
     }
+    componentDidMount() {
+        console.log('>>>Check componentdidmount')
+    }
     /*
         JSX: => return block 
              => Enable use javascript in html file
