@@ -9,7 +9,8 @@ class ListTodo extends React.Component {
             { id: 'todo1', title: 'devops' },
             { id: 'todo2', title: 'BA' },
             { id: 'todo3', title: 'Fullstack' }
-        ]
+        ],
+        editTodo: {}
     }
     addNewTodo = (todo) => {
         this.setState({
@@ -17,16 +18,46 @@ class ListTodo extends React.Component {
         })
         toast.success("Wow so easy !");
     }
-    handleClickDelete = (todo) => {
+    handleDeleteTodo = (todo) => {
         this.setState({
             listTodos: this.state.listTodos.filter(item => item.id !== todo.id)
         })
+        toast.success("Delete Success !");
     }
-    handleClickEdit = () => {
-        console.log('Try Edit SomeThing?')
+    handleEditTodo = (todo) => {
+        let { editTodo, listTodos } = this.state;
+        let isEmptyObj = Object.keys(editTodo).length === 0;
+
+        if (isEmptyObj === false && editTodo.id === todo.id) {
+            //Edit
+            let listTodoCopy = [...listTodos];
+            let objIndex = '';
+            objIndex = listTodoCopy.findIndex((obj => obj.id === todo.id));
+            listTodoCopy[objIndex].title = editTodo.title;
+            this.setState({
+                listTodos: listTodoCopy,
+                editTodo: ''
+            })
+            toast.success('Save Success');
+        }
+        //Save
+        else {
+            this.setState({
+                editTodo: todo
+            })
+        }
+    }
+    handleOnChangeEnvent = (event) => {
+        let editTodoCopy = { ...this.state.editTodo };
+        editTodoCopy.title = event.target.value;
+        this.setState({
+            editTodo: editTodoCopy
+        })
     }
     render() {
-        let { listTodos } = this.state;
+        let { listTodos, editTodo } = this.state;
+        let isEmptyObj = Object.keys(editTodo).length === 0;
+        console.log(isEmptyObj);
         return (
             <div className="list-todo-container">
                 <AddTodo
@@ -38,13 +69,30 @@ class ListTodo extends React.Component {
                         listTodos.map((item, index) => {
                             return (
                                 <div className="todo-child" key={item.id}>
-                                    <span>{index + 1}-{item.title}</span>
+                                    {isEmptyObj === true ?
+                                        <span>{index + 1}-{item.title} </span>
+                                        :
+                                        <>
+                                            {editTodo.id === item.id ?
+                                                <span>
+                                                    {index + 1} - <input
+                                                        value={editTodo.title}
+                                                        onChange={(event) => this.handleOnChangeEnvent(event)}
+                                                    />
+                                                </span>
+                                                :
+                                                <span>{index + 1}-{item.title} </span>
+                                            }
+                                        </>
+
+                                    }
                                     <button className="edit" type="button"
-                                        onClick={() => this.handleClickEdit(item)}>
-                                        Edit
+                                        onClick={() => this.handleEditTodo(item)}>
+                                        {isEmptyObj === false && editTodo.id === item.id ?
+                                            'Save' : 'Edit'}
                                     </button>
                                     <button className="delete" type="button"
-                                        onClick={() => this.handleClickDelete(item)}>
+                                        onClick={() => this.handleDeleteTodo(item)}>
                                         Delete
                                     </button>
                                 </div>
