@@ -57,7 +57,7 @@ class ListTodo extends React.Component {
     render() {
         let { listTodos, editTodo } = this.state;
         let isEmptyObj = Object.keys(editTodo).length === 0;
-        console.log(isEmptyObj);
+        console.log('>>>Link connected');
         return (
             <div className="list-todo-container">
                 <AddTodo

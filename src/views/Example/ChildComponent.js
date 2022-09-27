@@ -1,5 +1,4 @@
 import React from "react";
-import './Demo.scss'
 class ChildComponent extends React.Component {
     state = {
         showJobs: false

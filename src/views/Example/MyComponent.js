@@ -1,6 +1,7 @@
 import React from "react";
 import ChildComponent from "./ChildComponent";
 import AddComponents from "./AddComponent";
+import Nav from "../Nav/Nav";
 class MyComponent extends React.Component {
     state = {
         arrjobs: [
@@ -22,28 +23,6 @@ class MyComponent extends React.Component {
     componentDidMount() {
         console.log('>>>Check componentdidmount')
     }
-    /*
-        JSX: => return block 
-             => Enable use javascript in html file
-             => Just 1 block in htlm
-             <div>somthing<div/> => yes
-
-             <div>somthing<div/>
-             <div>somthing<div/> => no
-
-             <div>
-                <div>somthing<div/>
-                <div>somthing<div/>
-             <div/> => yes
-
-             <>
-                <div>somthing<div/>
-                <div>somthing<div/>
-             </> => yes
-
-             or can see below
-
-    */
     render() {
         return (
             <>
@@ -54,6 +33,7 @@ class MyComponent extends React.Component {
                     arrjobs={this.state.arrjobs}
                     deleteAJob={this.deleteAJob}
                 />
+                {/* <Nav /> */}
             </>
         )
     }

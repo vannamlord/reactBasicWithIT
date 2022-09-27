@@ -1,6 +1,8 @@
 .list-todo-container {
     button {
         cursor: pointer;
+        border-radius: 4px;
+        font-size: 20px;
     }
 
     .add-todo {
@@ -25,8 +27,6 @@
             .edit {
                 margin: 0 10px;
             }
-
-            .delete {}
         }
     }
 }
