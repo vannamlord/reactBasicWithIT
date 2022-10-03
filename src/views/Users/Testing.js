@@ -15,20 +15,6 @@ class TestingPage extends React.Component {
         return (
             <>
                 <div>Hello in testing</div>
-                {/* <form className="log-user-action">
-                    <button className="button-sign-in" type="button"
-                        onClick={() => this.openSignIn()}>
-                        Sign In
-                    </button>
-                    <button className="button-creat-account" type="button"
-                        onClick={() => this.openCreatAccout()}>
-                        Creat Account
-                    </button>
-                    <button className="button-change-password" type="button"
-                        onClick={() => this.openChangePassword()}>
-                        Change Password
-                    </button>
-                </form> */}
             </>
 
         )

@@ -35,7 +35,7 @@ class SignIn extends React.Component {
                         </div>
                         <p className="forgot-password text-right mt-2">
                             <NavLink to="/change-password" activeClassName="active">
-                                Forgot Password?
+                                Forgot password?
                             </NavLink>
                         </p>
                     </div>
