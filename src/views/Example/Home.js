@@ -4,10 +4,10 @@ import SignIn from "../Users/SignIn";
 import { connect } from 'react-redux';
 // import listUsers from "../Users/ListUser";
 class Home extends React.Component {
-    componentDidMount = () => {
-        // setTimeout(() => {
-        //     this.props.history.push('/todo')
-        // }, 3000)
+    componentDidMount = () => { }
+
+    handleDeleteUser = (user) => {
+        this.props.deleteUserRedux(user)
     }
     render() {
         let listUsers = this.props.dataRedux;
@@ -18,11 +18,10 @@ class Home extends React.Component {
                 </div>
                 <div>
                     {listUsers && listUsers.length > 0 &&
-
                         listUsers.map((item, index) => {
                             return (
                                 <div key={item.id}>
-                                    {index + 1} - {item.name}
+                                    {index + 1} - {item.name} <span onClick={() => this.handleDeleteUser(item)}>x</span>
                                 </div>
                             )
                         })
@@ -39,4 +38,10 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(withRouter(Home));
+const mapDispactchToProps = (dispatch) => {
+    return {
+        deleteUserRedux: (userDelete) => dispatch({ type: 'DELETE_USER', payload: userDelete })
+    }
+}
+
+export default connect(mapStateToProps, mapDispactchToProps)(withRouter(Home));
